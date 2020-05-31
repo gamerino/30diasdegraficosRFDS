@@ -42,10 +42,14 @@ datos %>%
     group_by(anio, Country) %>% 
     summarise(n=n())->datosFilt
 datosFilt %>%
-streamgraph("Country", "n", "anio", 
-            width = 750, height = 550) %>%
+streamgraph("Country", "n", "anio", interactive = T,
+            top = 30, height = 500,width = 700) %>%
+    sg_annotate("# combates UFC últimos 20 años",
+                x = as.Date("2000-01-01"), y = 400,
+                size = 20,color="Navy")%>%
     sg_axis_x(1, "year", "%Y") %>%
     sg_fill_brewer("Set3") %>%
-    sg_legend(TRUE, "País: ")
+    sg_legend(show=T, label="País: ")
+
 
 
